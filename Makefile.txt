@@ -1,0 +1,5 @@
+all: bitonic_sort3.c bitonicCuda.cu
+	mpicc bitonic_sort3.c -c -o bitonic_sort3.o
+	nvcc -g -G -arch=sm_70 bitonicCuda.cu -c -o bitonicCuda.o
+	mpicc -g bitonic_sort3.o bitonicCuda.o -o bitonicexe \
+          -L/usr/local/cuda-10.1/lib64/ -lcudadevrt -lcudart -lstdc++
