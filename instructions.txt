@@ -1,0 +1,14 @@
+module load gcc/7.4.0/1 spectrum-mpi cuda
+
+make
+
+(For 8 ranks)
+sbatch -N 2 --ntasks-per-node=4 --gres=gpu:4 -t 30 ./slurmSpectrum.sh
+(for 4 ranks)
+sbatch -N 1 --ntasks-per-node=4 --gres=gpu:4 -t 30 ./slurmSpectrum.sh
+(For 2 ranks)
+sbatch -N 1 --ntasks-per-node=2 --gres=gpu:2 -t 30 ./slurmSpectrum.sh
+
+squeue
+
+cat slurm-????.out
